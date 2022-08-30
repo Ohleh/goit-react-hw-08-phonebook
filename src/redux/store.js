@@ -15,5 +15,6 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware(),
     contactsApi.middleware,
+    userApi.middleware,
   ],
 });

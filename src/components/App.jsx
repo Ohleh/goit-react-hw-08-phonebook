@@ -5,12 +5,13 @@ import { Contacts } from './Contacts/Contacts';
 import { Navigation } from './Navigation/Navigation';
 import { Login } from 'Pages/Login';
 import { Register } from 'Pages/Register';
-// import { UserMenu } from './UserMenu/UserMenu';
+import { UserMenu } from '../components/UserMenu/UserMenu';
 
 export const App = () => {
   return (
     <>
       <Navigation />
+      <UserMenu />
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
