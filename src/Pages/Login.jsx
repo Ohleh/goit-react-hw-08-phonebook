@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { useLoginMutation } from '../redux/userApi';
 
 export const Login = () => {
-  const [login, status] = useLoginMutation();
+  const [
+    login,
+    // status
+  ] = useLoginMutation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
