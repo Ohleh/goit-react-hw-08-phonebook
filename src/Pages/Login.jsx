@@ -2,15 +2,13 @@ import { useState } from 'react';
 import { useLoginMutation } from '../redux/userApi';
 
 export const Login = () => {
-  const [
-    login,
-    // status
-  ] = useLoginMutation();
+  const [login, status] = useLoginMutation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleChangeEmail = e => setEmail(e.target.value);
   const handleChangePassword = e => setPassword(e.target.value);
+  const { isLoading } = status;
 
   const handleSubmit = e => {
     const credentials = { email, password };
@@ -43,7 +41,9 @@ export const Login = () => {
             ></input>
           </label>
 
-          <button type="submit">Login</button>
+          <button type="submit" disabled={isLoading}>
+            Login
+          </button>
         </form>
       </fieldset>
     </>

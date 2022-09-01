@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { buildQueries } from '@testing-library/react';
+
 import { userApi } from './userApi';
 
 const initialState = {
@@ -12,26 +12,45 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    // loginSucces(state, { payload }) {
-    //   const { user, token } = payload;
-    //   state.name = user.name;
-    //   state.email = user.email;
-    //   state.token = token;
-    // },
+    loginSucces(state, { payload }) {
+      const { user, token } = payload;
+      state.name = user.name;
+      state.email = user.email;
+      state.token = token;
+    },
     getCurrentSuccess(state, { payload }) {
       state.name = payload.name;
       state.email = payload.email;
     },
   },
   extraReducers: builder => {
-    builder.addMatcher(
-      userApi.endpoints.login.matchFulfilled, // екшн на який ми хочемо піжписатися
-      (state, { payload }) => {
-        const { user, token } = payload;
+    // builder.addMatcher(
+    //   userApi.endpoints.login.matchFulfilled, // екшн на який ми хочемо піжписатися
+    //   (state, { payload }) => {
+    //     const { user, token } = payload;
 
-        state.name = user.name;
-        state.email = user.email;
-        state.token = token;
+    //     state.name = user.name;
+    //     state.email = user.email;
+    //     state.token = token;
+    //   }
+    // );
+
+    // userSuccess
+    builder.addMatcher(
+      userApi.endpoints.currentUser.matchFulfilled,
+      (state, { payload }) => {
+        state.name = payload.name;
+        state.email = payload.email;
+      }
+    );
+
+    // userError
+    builder.addMatcher(
+      userApi.endpoints.currentUser.matchRejected,
+      (state, { payload }) => {
+        if (payload === '401') {
+          state.token = '';
+        }
       }
     );
   },

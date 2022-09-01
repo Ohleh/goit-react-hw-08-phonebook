@@ -4,9 +4,15 @@ export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://connections-api.herokuapp.com/users',
+    prepareHeaders: (headers, { getState }) => {
+      const { token = '' } = getState().user;
+      headers.set('Authorization', token);
+      return headers;
+    },
   }),
   tagTypes: ['User'],
   endpoints: builder => ({
+    // useLoginMutation
     login: builder.mutation({
       query: payload => ({
         url: '/login',
@@ -15,11 +21,10 @@ export const userApi = createApi({
       }),
       invalidatesTags: ['User'],
     }),
-
-    // getContacts: build.query({
-    //   query: () => '/contact',
-    //   providesTags: ['Contact'],
-    // }),
+    // useCurrentUserQuery
+    currentUser: builder.query({
+      query: () => '/current',
+    }),
 
     // removeContacts: builder.mutation({
     //   query: id => ({
@@ -32,4 +37,4 @@ export const userApi = createApi({
   }),
 });
 
-export const { useLoginMutation } = userApi;
+export const { useLoginMutation, useCurrentUserQuery } = userApi; // хуки
