@@ -12,28 +12,30 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    loginSucces(state, { payload }) {
-      const { user, token } = payload;
-      state.name = user.name;
-      state.email = user.email;
-      state.token = token;
-    },
+    // loginSucces(state, { payload }) {
+    //   const { user, token } = payload;
+    //   state.name = user.name;
+    //   state.email = user.email;
+    //   state.token = token;
+    //   console.log(user.token);
+    // },
     getCurrentSuccess(state, { payload }) {
       state.name = payload.name;
       state.email = payload.email;
     },
   },
   extraReducers: builder => {
-    // builder.addMatcher(
-    //   userApi.endpoints.login.matchFulfilled, // екшн на який ми хочемо піжписатися
-    //   (state, { payload }) => {
-    //     const { user, token } = payload;
+    builder.addMatcher(
+      userApi.endpoints.login.matchFulfilled, // екшн на який ми хочемо піжписатися
+      (state, { payload }) => {
+        const { user, token } = payload;
 
-    //     state.name = user.name;
-    //     state.email = user.email;
-    //     state.token = token;
-    //   }
-    // );
+        state.name = user.name;
+        state.email = user.email;
+        state.token = token;
+        console.log(user.token);
+      }
+    );
 
     // userSuccess
     builder.addMatcher(
@@ -43,6 +45,12 @@ export const userSlice = createSlice({
         state.email = payload.email;
       }
     );
+    // userLoguot
+    builder.addMatcher(userApi.endpoints.logout.matchFulfilled, state => {
+      state.name = initialState.name;
+      state.email = initialState.email;
+      state.token = initialState.email;
+    });
 
     // userError
     builder.addMatcher(

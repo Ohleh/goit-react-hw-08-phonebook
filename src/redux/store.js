@@ -53,15 +53,14 @@ export const store = configureStore({
     user: persistedUserReducer,
   },
 
-  middleware: getDefaultMiddleware =>
-    // [
-    getDefaultMiddleware({
+  middleware: getDefaultMiddleware => [
+    ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-  //   userApi.middleware,
-  // ],
+    userApi.middleware,
+  ],
 });
 
 export const persistor = persistStore(store);
