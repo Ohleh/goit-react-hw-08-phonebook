@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Contacts } from '../Pages/Contacts';
