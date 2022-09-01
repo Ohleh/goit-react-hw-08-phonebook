@@ -17,7 +17,6 @@ export const userSlice = createSlice({
     //   state.name = user.name;
     //   state.email = user.email;
     //   state.token = token;
-    //   console.log(user.token);
     // },
     getCurrentSuccess(state, { payload }) {
       state.name = payload.name;
@@ -29,11 +28,9 @@ export const userSlice = createSlice({
       userApi.endpoints.login.matchFulfilled, // екшн на який ми хочемо піжписатися
       (state, { payload }) => {
         const { user, token } = payload;
-
         state.name = user.name;
         state.email = user.email;
         state.token = token;
-        console.log(user.token);
       }
     );
 
