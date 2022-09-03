@@ -6,6 +6,7 @@ const initialState = {
   name: '',
   email: '',
   token: '',
+  filter: '',
 };
 
 export const userSlice = createSlice({
@@ -21,6 +22,10 @@ export const userSlice = createSlice({
     getCurrentSuccess(state, { payload }) {
       state.name = payload.name;
       state.email = payload.email;
+    },
+    //filterFind
+    findContact(state, { payload }) {
+      state.filter = payload;
     },
   },
   extraReducers: builder => {
@@ -74,6 +79,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { loginSucces, getCurrentSuccess } = userSlice.actions; // експорт екшенів
+export const { loginSucces, getCurrentSuccess, findContact } =
+  userSlice.actions; // експорт екшенів
 
 export default userSlice.reducer;

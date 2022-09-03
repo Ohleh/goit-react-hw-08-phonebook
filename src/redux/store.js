@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { contactsApi } from './phoneApi';
-import { phoneBookSlice } from './phoneBookSlice';
+// import { contactsApi } from './phoneApi';
+// import { phoneBookSlice } from './phoneBookSlice';
+import { userSlice } from './user';
 
 import user from './user';
 import { userApi } from './userApi';
@@ -47,8 +48,8 @@ const persistedUserReducer = persistReducer(userPersistConfig, user); // ред�
 
 export const store = configureStore({
   reducer: {
-    [contactsApi.reducerPath]: contactsApi.reducer, // .mockapi.io
-    findContact: phoneBookSlice.reducer, // filter render .mockapi.io
+    // [contactsApi.reducerPath]: contactsApi.reducer, // .mockapi.io
+    findContact: userSlice.reducer,
     [userApi.reducerPath]: userApi.reducer,
     user: persistedUserReducer,
   },

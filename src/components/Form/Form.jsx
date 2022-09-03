@@ -28,12 +28,18 @@ const Form = () => {
 
   const formSubmit = ev => {
     ev.preventDefault();
+
     if (
       data.find(contact => contact.name.toLowerCase() === name.toLowerCase())
     ) {
       return alert(`${name} - is already exists`);
     }
-    addContacts(ev);
+
+    // let formData = JSON.stringify(ev);
+    addContacts(JSON.stringify({ name, phone }));
+    console.log(JSON.stringify({ name, phone }));
+
+    // const formDataEv = JSON.stringify
 
     setName('');
     setPhone('');

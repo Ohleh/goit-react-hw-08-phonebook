@@ -20,7 +20,7 @@ export const userApi = createApi({
       query: payload => ({
         url: '/users/signup',
         method: 'POST',
-        body: payload,
+        // body: payload,
       }),
       invalidatesTags: ['User'],
     }),
@@ -57,10 +57,11 @@ export const userApi = createApi({
 
     //useAddContactsMutation
     addContacts: builder.mutation({
-      query: newContact => ({
+      query: ({ payload }) => ({
         url: '/contacts',
         method: 'POST', // add
-        body: newContact,
+
+        body: { payload },
       }),
       invalidatesTags: ['User'],
     }),
