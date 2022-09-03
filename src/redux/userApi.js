@@ -20,7 +20,7 @@ export const userApi = createApi({
       query: payload => ({
         url: '/users/signup',
         method: 'POST',
-        // body: payload,
+        body: payload,
       }),
       invalidatesTags: ['User'],
     }),

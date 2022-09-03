@@ -1,5 +1,5 @@
 import React from 'react';
-import ContactsRender from './UserContactsRender';
+import UserContactsRender from './UserContactsRender';
 import propTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useGetContactsQuery } from 'redux/userApi';
@@ -21,8 +21,8 @@ const Contacts = () => {
         <p>Качаю кілобайти</p>
       ) : (
         <ul>
-          {filteredContacts.map(({ id, name, phone }) => (
-            <ContactsRender key={id} contact={[id, name, phone]} />
+          {filteredContacts.map(({ id, name, number }) => (
+            <UserContactsRender key={id} contact={[id, name, number]} />
           ))}
         </ul>
       )}

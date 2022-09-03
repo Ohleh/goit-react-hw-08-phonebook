@@ -11,7 +11,8 @@ const Form = () => {
     data,
     // error, isLoading
   } = useGetContactsQuery();
-  const [addContacts] = useAddContactsMutation();
+  const [addContacts, status] = useAddContactsMutation();
+  const { isLoading } = status;
 
   const handleChange = ev => {
     switch (ev.target.name) {
@@ -28,7 +29,6 @@ const Form = () => {
 
   const formSubmit = ev => {
     ev.preventDefault();
-
     if (
       data.find(contact => contact.name.toLowerCase() === name.toLowerCase())
     ) {
@@ -37,6 +37,7 @@ const Form = () => {
 
     const credentials = { name, number };
     addContacts(credentials);
+    console.log('credentials', credentials);
 
     setName('');
     setPhone('');
@@ -68,7 +69,9 @@ const Form = () => {
           onChange={handleChange}
         />
       </label>
-      <button type="submit">Add Contact</button>
+      <button type="submit" disabled={isLoading}>
+        Add Contact
+      </button>
     </form>
   );
 };

@@ -18,8 +18,8 @@ export const Register = () => {
 
     e.preventDefault();
 
-    // console.log('credentials', credentials);
     register(credentials);
+    // console.log('credentials', credentials);
   };
 
   return (
