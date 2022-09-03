@@ -6,7 +6,7 @@ import { useAddContactsMutation } from 'redux/userApi';
 
 const Form = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setPhone] = useState('');
   const {
     data,
     // error, isLoading
@@ -18,7 +18,7 @@ const Form = () => {
       case 'name':
         setName(ev.target.value);
         break;
-      case 'phone':
+      case 'number':
         setPhone(ev.target.value);
         break;
       default:
@@ -35,11 +35,8 @@ const Form = () => {
       return alert(`${name} - is already exists`);
     }
 
-    // let formData = JSON.stringify(ev);
-    addContacts(JSON.stringify({ name, phone }));
-    console.log(JSON.stringify({ name, phone }));
-
-    // const formDataEv = JSON.stringify
+    addContacts(JSON.stringify({ name, number }));
+    console.log(JSON.stringify({ name, number }));
 
     setName('');
     setPhone('');
@@ -63,11 +60,11 @@ const Form = () => {
         <p>Number</p>
         <input
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={phone}
+          value={number}
           onChange={handleChange}
         />
       </label>
