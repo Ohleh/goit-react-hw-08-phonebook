@@ -35,8 +35,8 @@ const Form = () => {
       return alert(`${name} - is already exists`);
     }
 
-    addContacts(JSON.stringify({ name, number }));
-    console.log(JSON.stringify({ name, number }));
+    const credentials = { name, number };
+    addContacts(credentials);
 
     setName('');
     setPhone('');

@@ -57,11 +57,10 @@ export const userApi = createApi({
 
     //useAddContactsMutation
     addContacts: builder.mutation({
-      query: ({ payload }) => ({
+      query: payload => ({
         url: '/contacts',
-        method: 'POST', // add
-
-        body: { payload },
+        method: 'POST',
+        body: payload,
       }),
       invalidatesTags: ['User'],
     }),
