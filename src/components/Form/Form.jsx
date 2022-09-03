@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import { nanoid } from 'nanoid';
-import { useGetContactsQuery } from 'redux/phoneApi';
-import { useAddContactsMutation } from 'redux/phoneApi';
+import { useGetContactsQuery } from 'redux/userApi';
+import { useAddContactsMutation } from 'redux/userApi';
 
 const Form = () => {
   const [name, setName] = useState('');

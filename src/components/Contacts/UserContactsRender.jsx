@@ -1,4 +1,4 @@
-import { useRemoveContactsMutation } from 'redux/phoneApi';
+import { useRemoveContactsMutation } from 'redux/userApi';
 
 const ContactsRender = ({ contact: [id, name, number] }) => {
   const [removeContacts, { isLoading }] = useRemoveContactsMutation();

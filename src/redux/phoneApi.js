@@ -9,16 +9,13 @@ export const contactsApi = createApi({
   }),
   tagTypes: ['Contact'],
   endpoints: build => ({
+    // useGetContactsQuery
     getContacts: build.query({
       query: () => '/contact',
       providesTags: ['Contact'],
     }),
-    //
-    // findContacts: build.query({
-    //   query: name => `/contact/${name}`,
-    //   providesTags: ['Contact'],
-    // }),
-    //
+
+    //useAddContactsMutation
     addContacts: build.mutation({
       query: newContact => ({
         url: '/contact',
@@ -27,8 +24,8 @@ export const contactsApi = createApi({
       }),
       invalidatesTags: ['Contact'],
     }),
-    //
-    //
+
+    // useRemoveContactsMutation
     removeContacts: build.mutation({
       query: id => ({
         url: `/contact/${id}`,
@@ -36,13 +33,17 @@ export const contactsApi = createApi({
       }),
       invalidatesTags: ['Contact'],
     }),
-    //
+
+    // findContacts: build.query({
+    //   query: name => `/contact/${name}`,
+    //   providesTags: ['Contact'],
+    // }),
   }),
 });
 
 export const {
   useGetContactsQuery,
-  //   useFindContactsQuery,
   useAddContactsMutation,
   useRemoveContactsMutation,
+  //   useFindContactsQuery,
 } = contactsApi;

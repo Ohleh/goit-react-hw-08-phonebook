@@ -24,8 +24,20 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: builder => {
+    // login
     builder.addMatcher(
       userApi.endpoints.login.matchFulfilled, // екшн на який ми хочемо піжписатися
+      (state, { payload }) => {
+        const { user, token } = payload;
+        state.name = user.name;
+        state.email = user.email;
+        state.token = token;
+      }
+    );
+
+    // register
+    builder.addMatcher(
+      userApi.endpoints.register.matchFulfilled, // екшн на який ми хочемо піжписатися
       (state, { payload }) => {
         const { user, token } = payload;
         state.name = user.name;
@@ -42,6 +54,7 @@ export const userSlice = createSlice({
         state.email = payload.email;
       }
     );
+
     // userLoguot
     builder.addMatcher(userApi.endpoints.logout.matchFulfilled, state => {
       state.name = initialState.name;

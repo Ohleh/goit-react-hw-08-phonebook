@@ -2,7 +2,7 @@ import React from 'react';
 import ContactsRender from './UserContactsRender';
 import propTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { useGetContactsQuery } from 'redux/phoneApi';
+import { useGetContactsQuery } from 'redux/userApi';
 
 const Contacts = () => {
   const { data, error, isLoading } = useGetContactsQuery();
