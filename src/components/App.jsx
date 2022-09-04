@@ -21,21 +21,24 @@ export const App = () => {
 
   return (
     <>
-      <Navigation />
+      {/* <Navigation /> */}
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route
-            path="/register"
-            element={token ? <Navigate to="/contacts" /> : <Register />}
-          />
-          <Route
-            path="/login"
-            element={token ? <Navigate to="/contacts" /> : <Login />}
-          />
+          <Route path="/" element={<Navigation />}>
+            <Route index element={<Register />} />
+            <Route
+              path="/register"
+              element={token ? <Navigate to="/contacts" /> : <Register />}
+            />
+            <Route
+              path="/login"
+              element={token ? <Navigate to="/contacts" /> : <Login />}
+            />
 
-          <Route path="/contacts" element={<PrivateRoutes />}>
-            <Route path="/contacts" element={<Contacts />} />
+            <Route path="/contacts" element={<PrivateRoutes />}>
+              <Route path="/contacts" element={<Contacts />} />
+            </Route>
           </Route>
         </Routes>
       </Suspense>

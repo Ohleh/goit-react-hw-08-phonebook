@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // import PrivateRoutes from './PrivateRoutes';
@@ -16,6 +16,9 @@ export const Navigation = () => {
         <NavLink to="/login"> Login </NavLink>
       )}
       <hr />
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 };
