@@ -16,9 +16,6 @@ export const Navigation = () => {
         <NavLink to="/login"> Login </NavLink>
       )}
       <hr />
-      <main>
-        <Outlet />
-      </main>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { userSlice } from './user';
 
 import user from './user';
@@ -42,4 +43,5 @@ export const store = configureStore({
   ],
 });
 
+setupListeners(store.dispatch);
 export const persistor = persistStore(store);
