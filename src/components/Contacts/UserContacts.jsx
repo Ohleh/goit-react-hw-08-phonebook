@@ -7,6 +7,7 @@ import { useGetContactsQuery } from 'redux/userApi';
 const Contacts = () => {
   const { data, error, isLoading } = useGetContactsQuery();
   const filter = useSelector(state => state.findContact.filter);
+  console.log('data', data);
 
   const filteredContacts = filter
     ? data.filter(({ name }) =>

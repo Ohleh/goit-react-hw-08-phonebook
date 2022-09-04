@@ -37,7 +37,6 @@ const Form = () => {
 
     const credentials = { name, number };
     addContacts(credentials);
-    console.log('credentials', credentials);
 
     setName('');
     setPhone('');
