@@ -13,7 +13,7 @@ export const userApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['User'],
+  tagTypes: ['User', 'Contact'],
   endpoints: builder => ({
     // useRegisterMutation
     register: builder.mutation({
@@ -47,23 +47,23 @@ export const userApi = createApi({
     // useCurrentUserQuery
     currentUser: builder.query({
       query: () => '/users/current',
-      // provideTags: ['User'],
+      //   provideTags: ['User'],
     }),
 
     // useGetContactsQuery
     getContacts: builder.query({
       query: () => '/contacts',
-      provideTags: ['User'],
+      provideTags: ['Contact'],
     }),
 
     //useAddContactsMutation
     addContacts: builder.mutation({
-      query: payload => ({
+      query: newContact => ({
         url: '/contacts',
         method: 'POST',
-        body: payload,
+        body: newContact,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Contact'],
     }),
 
     // useRemoveContactsMutation
@@ -72,7 +72,7 @@ export const userApi = createApi({
         url: `/contacts/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Contact'],
     }),
 
     // removeContacts: builder.mutation({
