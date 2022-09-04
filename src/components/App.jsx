@@ -26,7 +26,10 @@ export const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Navigation />}>
-            <Route index element={<Register />} />
+            <Route
+              index
+              element={token ? <Navigate to="/contacts" /> : <Register />}
+            />
             <Route
               path="/register"
               element={token ? <Navigate to="/contacts" /> : <Register />}
